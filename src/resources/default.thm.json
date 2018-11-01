@@ -1,0 +1,5 @@
+{
+    "preload": ["academy_ruins"],
+    "emoji": [":xD:"],
+    "particles": ["particle", "fire"]
+}
