@@ -43,8 +43,12 @@ export default class CardsScene extends Scene {
         this._fpsText = new PIXI.Text();
         this.addChild(this._fpsText);
 
-        this._container = new PIXI.particles.ParticleContainer(144, {
-            position: true
+        this._container = new PIXI.particles.ParticleContainer(1000, {
+            scale: true,
+            position: true,
+            rotation: true,
+            uvs: true,
+            alpha: true
         });
         this.addChild(this._container)
         for (let i = 0; i < 144; i++) {
@@ -98,15 +102,15 @@ export default class CardsScene extends Scene {
             let card = this._secondPile[i];
             card.width = this._utils.toAspectSize(297);
             card.height = this._utils.toAspectSize(413);
-            card.x = this._utils.toAspectSize(SECOND_PILE_X - i * 0.5);
-            card.y = this._utils.toAspectSize(SECOND_PILE_Y - i * 0.5);
+            card.position.x = this._utils.toAspectSize(SECOND_PILE_X - i * 0.5);
+            card.position.y = this._utils.toAspectSize(SECOND_PILE_Y - i * 0.5);
         }
         for (let i = 0; i < this._cards.length; i++) {
             let card = this._cards[i];
             card.width = this._utils.toAspectSize(297);
             card.height = this._utils.toAspectSize(413);
-            card.x = this._utils.toAspectSize(BASE_PILE_X - i * 0.5);
-            card.y = this._utils.toAspectSize(BASE_PILE_Y - i * 0.5);
+            card.position.x = this._utils.toAspectSize(BASE_PILE_X - i * 0.5);
+            card.position.y = this._utils.toAspectSize(BASE_PILE_Y - i * 0.5);
         }
         if (shouldAnimate) {
             this.animate();
