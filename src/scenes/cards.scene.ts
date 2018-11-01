@@ -43,7 +43,9 @@ export default class CardsScene extends Scene {
         this._fpsText = new PIXI.Text();
         this.addChild(this._fpsText);
 
-        this._container = new PIXI.particles.ParticleContainer();
+        this._container = new PIXI.particles.ParticleContainer(144, {
+            position: true
+        });
         this.addChild(this._container)
         for (let i = 0; i < 144; i++) {
             let academyRuins = new PIXI.Sprite(this._res.getTextureByName('academy_ruins'));
