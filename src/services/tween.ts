@@ -57,8 +57,8 @@ export class Tween {
                 x: this.easing(this._currentFrame, this._startValue.x, this._targetValue.x, this._endFrame),
                 y: this.easing(this._currentFrame, this._startValue.y, this._targetValue.y, this._endFrame),
             }
-            this._object.x = newValues.x;
-            this._object.y = newValues.y;
+            this._object.position.x = newValues.x;
+            this._object.position.y = newValues.y;
             return false;
         } else {
             this._isActive = false;
@@ -71,8 +71,8 @@ export class Tween {
 
     private initIterations() {
         this._startValue = {
-            x: this._object.x,
-            y: this._object.y
+            x: this._object.position.x,
+            y: this._object.position.y
         };
         this._targetValue = {
             x: this._targetValue.x - this._object.x,
