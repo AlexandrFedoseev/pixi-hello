@@ -64,7 +64,6 @@ export class ButtonActor extends PIXI.Container {
         });
         this._label.x = this._utils.toAspectSize(this._width) / 2 - this._label.width / 2;
         this._label.y = this._utils.toAspectSize(this._height) / 2 - this._label.height / 2;
-
     }
 
     private onButtonDown() {
@@ -73,7 +72,7 @@ export class ButtonActor extends PIXI.Container {
     }
     
     private onButtonUp() {
-        if (this._isOver && this.handleButtonPressed != null) {
+        if (this._isDown) {
             this.handleButtonPressed();
         }
         this._isDown = false;
@@ -88,6 +87,7 @@ export class ButtonActor extends PIXI.Container {
     private onButtonOut() {
         this._isOver = false;
         if (this._isDown) {
+            this._isDown = false;
             return;
         }
         this.redraw();
