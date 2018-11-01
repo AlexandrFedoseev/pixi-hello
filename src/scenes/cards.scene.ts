@@ -25,6 +25,8 @@ export default class CardsScene extends Scene {
     private _inAnimation: PIXI.Sprite;
     private _ticker: PIXI.ticker.Ticker;
     private _fpsText: PIXI.Text;
+
+    private _container: PIXI.particles.ParticleContainer;
     constructor() {
         super();
         this.initialize();
@@ -41,9 +43,11 @@ export default class CardsScene extends Scene {
         this._fpsText = new PIXI.Text();
         this.addChild(this._fpsText);
 
+        this._container = new PIXI.particles.ParticleContainer();
+        this.addChild(this._container)
         for (let i = 0; i < 144; i++) {
             let academyRuins = new PIXI.Sprite(this._res.getTextureByName('academy_ruins'));
-            this.addChild(academyRuins);
+            this._container.addChild(academyRuins);
             this._cards.push(academyRuins);
         }
 
@@ -116,7 +120,7 @@ export default class CardsScene extends Scene {
         let move = new Tween(this._inAnimation, to, 60);
         move.onComplete(() => {
             this._secondPile.push(this._inAnimation);
-            this.setChildIndex(this._inAnimation, this._secondPile.length + 1);
+            this._container.setChildIndex(this._inAnimation, this._secondPile.length);
             if (this._cards.length > 0) {
                 this.animate();
             } else {
